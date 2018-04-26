@@ -1,0 +1,122 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+    <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                  <h3>Factura</h3>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <section class="content invoice">
+                      <!-- title row -->
+                      <div class="row">
+                        <div class="col-xs-12 invoice-header">
+                          <h3> <small class="pull-right">R.U.C.: 0982014520001</small></h3><br>
+                          <h3> <small class="pull-right">FACTURA</small></h3><br>
+                          <h3> <small class="pull-right" ng-model= "numFactura">{{numFactura}}</small></h3>
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- info row -->
+                      <div class="row invoice-info">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" ng-submit="getCabeceraFactura()">
+                          <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12" for="first-name">Nombres y Apellidos
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" ng-model="nombreF">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12" for="first-name">Cédula
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="cedula" required="required" class="form-control col-md-7 col-xs-12"  ng-model="cedula">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-12" for="direccion">Dirección
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="direccion" required="required" class="form-control col-md-7 col-xs-12" ng-model="direccion">
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- /.row -->
+                      <br><br>
+                      <!-- Table row -->
+                      <div class="row">
+                        <div class="col-xs-12 table">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <td><strong>Cant. </strong></td>
+                                <td class="fs15 fw700 text-right"><strong>Descripción</strong></td>
+                                <td class="fs15 fw700 text-right"><strong>Valor Unitario</strong></td>
+                                <td class="fs15 fw700 text-right"><strong>Total</strong></td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td class="fs15 fw700 text-right">{{descripcionDetalle}}</td>
+                                <td class="fs15 fw700 text-right">$ {{valorDetalle}}</td>
+                                <td class="fs15 fw700 text-right">$ {{valorDetalle}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+
+                      <div class="row">
+                        <!-- accepted payments column -->
+                        <div class="col-xs-9">
+                          <p class="lead"> <br></p>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-3">
+                          <p class="lead"></p>
+                          <div class="table-responsive">
+                            <table class="table">
+                              <tbody>
+                                <tr>
+                                  <th style="width:50%">Subtotal:</th>
+                                  <td>${{valorDetalle}}</td>
+                                </tr>
+                                <tr>
+                                  <th>IVA (12%)</th>
+                                  <td>${{ivaDetalle}}</td>
+                                </tr>
+                                <tr>
+                                  <th>Total:</th>
+                                  <td>${{totalDetalle}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <div class="row">
+                        <button type="button" class="btn btn-success" ng-click="pagarFactura()">Pagar</button>
+                      </div>
+                      <!-- /.row -->
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- /page content -->
+<div footer></div>

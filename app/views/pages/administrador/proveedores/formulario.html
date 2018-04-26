@@ -1,0 +1,42 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>Añadir Proveedores</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+					<br />
+					<form id="proveedorForm" class="form-horizontal form-label-left" ng-submit="insertarProveedor()">
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre de Proveedor</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+						  		<input id="descripcion" type="text" class="form-control" placeholder="Nombre de Proveedor" ng-model="descripcion" value="{{$parent.ruc}}" ng-required="true">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">RUC</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<input id="ruc" type="text" class="form-control" placeholder="RUC" ng-model="ruc" ng-required="true">
+							</div>
+						</div>
+						<div class="ln_solid"></div>
+						<div class="form-group">
+							<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+								<button type="button" class="btn btn-primary" ng-click="goTo('/proveedores')">Cancel</button>
+								<button type="reset" class="btn btn-primary" ng-click="clearForm()">Reset</button>
+								<input type="submit" class="btn btn-success" value="Guardar"/>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /page content -->
+<div footer></div>

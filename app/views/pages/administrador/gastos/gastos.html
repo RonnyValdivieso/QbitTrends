@@ -1,0 +1,82 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<div class="row">
+						<h2>Gastos Pendientes</h2>
+						<a type="button" class="btn btn-warning navbar-right" href="#!/gastos/pagados">Cuentas Pagadas</a>
+						<button ng-click="goTo('/gastos/nuevo')" type="button" class="btn btn-success navbar-right">Nuevo</button>
+					</div>
+					<div class="clearfix"></div>
+					<div class="x_content">
+						<div class="dashboard-widget-content">
+							<div class="col-md-12 col-xs-12">
+								<h2 class="line_30"></h2>
+								<br>
+								<table class="countries_list">
+									<thead>
+										<tr>
+											<td><strong>Descripción</strong></td>
+											<td class="fs15 fw700 text-right"><strong>Fecha</strong></td>
+											<td class="fs15 fw700 text-right"><strong>Total a Pagar</strong></td>
+											<td class="fs15 fw700 text-right"><strong>Nombre de la Empresa</strong></td>
+											<td class="fs15 fw700 text-center"><strong>Acciones</strong></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="item in data">
+											<td>{{item.descripcion}}</td>
+											<td class="fs15 fw700 text-right">{{item.fecha}}</td>
+											<td class="fs15 fw700 text-right">{{item.total}}</td>
+											<td class="fs15 fw700 text-right">{{item.nombre_proveedor}}</td>
+											<td class="text-center">
+												<button class="btn btn-success" ng-click="generarPago(item)">Pagar</button>
+												<a type="button" class="btn btn-primary" ng-href="#!/gastos/editar" ng-click="buscarCuentaxpagar(item.id)">Editar</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /page content -->
+<div footer></div>
+<script>
+	$('#myDatepicker').datetimepicker();
+
+	$('#myDatepicker2').datetimepicker({
+		format: 'DD.MM.YYYY'
+	});
+
+	$('#myDatepicker3').datetimepicker({
+		format: 'hh:mm A'
+	});
+
+	$('#myDatepicker4').datetimepicker({
+		ignoreReadonly: true,
+		allowInputToggle: true
+	});
+
+	$('#datetimepicker6').datetimepicker();
+
+	$('#datetimepicker7').datetimepicker({
+		useCurrent: false
+	});
+
+	$("#datetimepicker6").on("dp.change", function(e) {
+		$('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+	});
+
+	$("#datetimepicker7").on("dp.change", function(e) {
+		$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+	});
+</script>

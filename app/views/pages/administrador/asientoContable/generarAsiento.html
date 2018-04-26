@@ -1,0 +1,105 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>Añadir Gastos</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+					<br />
+					<form id="cuentaxpagarForm" class="form-horizontal form-label-left" ng-submit="insertarAsiento()">
+						
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<div class="form-group">
+									<div class='input-group date' id='myDatepicker2'>
+										<input type='date' class="form-control" placeholder="2017-10-12" ng-model="fecha" value="{{$parent.fecha}}" ng-required="true">
+										<span class="input-group-addon">
+											 <span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Descripcion</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<input type="text" class="form-control" placeholder="Descripcion" ng-model="descripcion" ng-required="true">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Debe</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<select class="select2_single form-control" tabindex="-1" 
+									ng-options="option.descripcion for option in cuentasPasivo track by option.id"
+									ng-model="cuentaPasivo">
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Haber</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<select class="select2_single form-control" tabindex="-1" 
+									ng-options="option.descripcion for option in cuentasActivo track by option.id"
+									ng-model="cuentaActivo">
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Monto</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<input type="text" class="form-control" placeholder="Valor" ng-model="valor">
+							</div>
+						</div>
+						<div class="ln_solid"></div>
+						<div class="form-group">
+							<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+								<button type="submit" class="btn btn-success">Guardar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /page content -->
+<div footer></div>
+<script>
+	$('#myDatepicker').datetimepicker();
+
+	$('#myDatepicker2').datetimepicker({
+		format: 'DD.MM.YYYY'
+	});
+
+	$('#myDatepicker3').datetimepicker({
+		format: 'hh:mm A'
+	});
+
+	$('#myDatepicker4').datetimepicker({
+		ignoreReadonly: true,
+		allowInputToggle: true
+	});
+
+	$('#datetimepicker6').datetimepicker();
+
+	$('#datetimepicker7').datetimepicker({
+		useCurrent: false
+	});
+
+	$("#datetimepicker6").on("dp.change", function(e) {
+		$('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+	});
+
+	$("#datetimepicker7").on("dp.change", function(e) {
+		$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+	});
+</script>

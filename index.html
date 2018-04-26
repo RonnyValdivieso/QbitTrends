@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html ng-app="ProUrban">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+	<title>Qbit Trends</title>
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="assets/images/favicon.png" sizes="16x16">
+	<!-- Bootstrap -->
+	<link href="assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- Animate.css -->
+	<link href="assets/vendors/animate.css/animate.min.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-progressbar -->
+	<link href="assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+	<!-- JQVMap -->
+	<link href="assets/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+	<!-- bootstrap-daterangepicker -->
+	<link href="assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+	<!-- bootstrap-datetimepicker -->
+	<link href="assets/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+	<!-- Datatables -->
+	<link href="assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+	<link href="assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+	<link href="assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+	<link href="assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+	<link href="assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom Theme Style -->
+	<link href="assets/css/custom.css" rel="stylesheet">
+</head>
+<body class="nav-md" ng-controller="appController">
+	<div class="container body">
+		<div class="main_container">
+			<div ng-view></div>
+		</div>
+	</div>
+
+	<!-- Libraries -->
+	<script src="assets/js/angular.min.js"></script>
+	<script src="assets/js/angular-route.js"></script>
+	<script src="assets/js/angular-animate.js"></script>
+	<script src="assets/js/angular-local-storage.js"></script>
+
+	<!-- jQuery -->
+	<script src="assets/vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- NProgress -->
+	<script src="assets/vendors/nprogress/nprogress.js"></script>
+	<!-- Chart.js -->
+	<script src="assets/vendors/Chart.js/dist/Chart.min.js"></script>
+	<!-- JQVMap -->
+   <script src="assets/vendors/jqvmap/dist/jquery.vmap.js"></script>
+   <script src="assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+   <script src="assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+   <!-- Datatables -->
+	<script src="assets/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="assets/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="assets/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="assets/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="assets/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="assets/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script src="assets/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script src="assets/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script src="assets/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script src="assets/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <!-- <script src="assets/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="assets/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="assets/vendors/pdfmake/build/vfs_fonts.js"></script> -->
+	
+	<!-- bootstrap-daterangepicker -->
+	<script src="assets/vendors/moment/min/moment.min.js"></script>
+	<script src="assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-datetimepicker -->
+   <script src="assets/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+	<!-- Custom Theme Scripts -->
+	<script src="assets/js/custom.js"></script>
+
+	<!-- Routes and Configuration -->
+	<script src="app/app.js"></script>
+	<script src="app/routes.js"></script>
+	<script src="app/factories/angular.soap.js"></script>
+	<script src="app/soapclient.js"></script>
+	<script src="app/factories/authenticationService.js"></script>
+	<script src="app/factories/trendsService.js"></script>
+	<!-- <script src="app/factories/administrador/proveedorService.js"></script>
+	<script src="app/factories/administrador/cuentaxpagarService.js"></script>
+	<script src="app/factories/administrador/cuentaxcobrarService.js"></script>
+	<script src="app/factories/administrador/reservaService.js"></script>
+	<script src="app/factories/administrador/facturaService.js"></script>
+	<script src="app/factories/administrador/asientoContable/cuentasService.js"></script>
+	<script src="app/factories/administrador/asientoContable/asientoService.js"></script> -->
+
+	<script src="app/directives/menuDirective.js"></script>
+	<script src="app/directives/headerDirective.js"></script>
+	<script src="app/directives/formDirective.js"></script>
+	<script src="app/directives/footerDirective.js"></script>
+
+	<!-- Controllers -->
+	<script src="app/controllers/appController.js"></script>
+	<script src="app/controllers/loginController.js"></script>
+	<script src="app/controllers/homeController.js"></script>
+	<script src="app/controllers/formController.js"></script>
+	<!-- <script src="app/controllers/administrador/proveedores/proveedorController.js"></script>
+	<script src="app/controllers/administrador/proveedores/prvInactivosController.js"></script>
+	<script src="app/controllers/administrador/cuentasxpagar/cuentaxpagarController.js"></script>
+	<script src="app/controllers/administrador/cuentasxpagar/cxpInactivosController.js"></script>
+	<script src="app/controllers/administrador/cuentaxcobrarController.js"></script>
+	<script src="app/controllers/administrador/reservaController.js"></script>
+	<script src="app/controllers/administrador/facturaController.js"></script>
+	<script src="app/controllers/administrador/asientoContable/cuentasController.js"></script>
+	<script src="app/controllers/administrador/asientoContable/asientoController.js"></script> -->	
+
+</body>
+</html>

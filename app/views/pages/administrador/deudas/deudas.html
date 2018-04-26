@@ -1,0 +1,60 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<div class="page-title">
+						<div class="title_left col-md-5 col-sm-5 col-xs-6">
+							<h2>Deudores</h2>
+						</div>
+						<div class="title_right">
+							<div class="col-md-3 col-sm-3 col-xs-6 form-group pull-right top_search">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Search for..."  ng-model="nombrexBuscar">
+									<span class="input-group-btn">
+										<button class="btn btn-default" ng-click="getDeudas()" type="button">Go!</button>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="x_content">
+						<div class="dashboard-widget-content">
+							<div class="col-md-12 col-xs-12">
+								<h2 class="line_30"></h2>
+								<br>
+								<table class="countries_list">
+									<thead>
+										<tr>
+											<td><strong>Usuario</strong></td>
+											<td class="fs15 fw700 text-right"><strong>Cédula</strong></td>
+											<td class="fs15 fw700 text-right"><strong>Fecha Máxima Pago</strong></td>
+											<td class="fs15 fw700 text-right"><strong>Estado</strong></td>
+											<td class="text-center"><strong>Acciones</strong></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="item in data">
+											<td>{{item.primer_nombre}} {{item.primer_apellido}}</td>
+											<td class="fs15 fw700 text-right">{{item.cedula}}</td>
+											<td class="fs15 fw700 text-right">{{item.fecha_maxima_pago}}</td>
+											<td class="fs15 fw700 text-right">{{item.estado}}</td>
+											<td class="text-center">
+											<button ng-click="buscarCuentaXcobrar(item.id)"><a>Pagar</a></button>
+										</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /page content -->
+<div footer></div>

@@ -1,0 +1,41 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="row">	
+		<div class="col-md-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<div class="page-title">
+	            		<h3>Cuentas</h3>
+					</div>
+					<div class="x_content">
+						<table class="countries_list">
+							<thead>
+								<tr>
+									<td><strong>Debe</strong></td>
+									<td class="fs15 fw700 text-right"><strong>Haber</strong></td>
+									<td class="fs15 fw700 text-right"><strong>Saldo Inicial</strong></td>
+									<td class="fs15 fw700 text-right"><strong>Saldo Actual</strong></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in data">
+									<td ng-if= "item.tipo === 'activo'">{{item.descripcion}}</td>
+									<td ng-if= "item.tipo === 'activo'"></td>
+									<td class="fs15 fw700 text-right" ng-if= "item.tipo === 'pasivo'"></td>
+									<td class="fs15 fw700 text-right" ng-if= "item.tipo === 'pasivo'">{{item.descripcion}}</td>
+									<td class="fs15 fw700 text-right">{{item.saldo_inicial}}</td>
+									<td class="fs15 fw700 text-right">{{item.saldo}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /page content -->
+<div footer></div>
+

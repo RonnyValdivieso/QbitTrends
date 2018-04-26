@@ -1,0 +1,55 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<div class="row">
+						<div class="col-md-8 col-sm-7 col-xs-12">
+							<h2>Listados de Proveedores</h2>
+						</div>
+						<div class="col-md-4">
+							<div class="col-md-4 col-sm-2 col-xs-3">
+								<button ng-click="goTo('/proveedores/nuevo')" type="button" class="btn btn-success navbar-right">Añadir Nuevo</button>
+							</div>
+							<div class="col-md-8 col-sm-3 col-xs-3">
+								<a type="button" class="btn btn-warning navbar-right" href="#!/proveedores/inactivos">Proveedores Eliminados</a>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="x_content">
+						<div class="dashboard-widget-content">
+							<div class="col-md-12 col-xs-12">
+							<h2 class="line_30"></h2>
+							<br>
+							<table class="countries_list">
+								<thead>
+									<tr>
+										<td><strong>Nombre de Proveedor</strong></td>
+										<td class="fs15 fw700 text-right"><strong>RUC</strong></td>
+										<td class="text-center"><strong>Acciones</strong></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in data">
+										<td>{{item.descripcion}}</td>
+										<td class="fs15 fw700 text-right">{{item.ruc}}</td>
+										<td class="text-center">
+											<a class="btn btn-primary" ng-click="buscarProveedor(item.id)" ng-href="#!/proveedores/editar">Editar</a>
+											<button class="btn btn-danger" ng-click="eliminarProveedor(item.id)">Eliminar</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /page content -->
+<div footer></div>
