@@ -4,6 +4,8 @@ app.factory("TrendsService", ['$soap', '$rootScope', 'localStorageService', 'App
 
 		service.interestByRegion = interestByRegion;
 		service.interestOverTime = interestOverTime;
+		service.relatedTopics = relatedTopics;
+		service.relatedQueries = relatedQueries;
 		// service.setCredentials = setCredentials;
 		// service.getCredentials = getCredentials;
 		// service.isLoggedIn = isLoggedIn;
@@ -11,25 +13,47 @@ app.factory("TrendsService", ['$soap', '$rootScope', 'localStorageService', 'App
 		return service;
 
 		function interestOverTime(searchTerm) {
-         var params = {
-         	keyword: searchTerm,
-         	category: 0,
-         	startTime: "2016-05-25",
-         };
+			var params = {
+				keyword: searchTerm,
+				category: 0,
+				startTime: "2016-05-25",
+			};
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $.post(AppConfig.apiUrl + '/interestOverTime', params);
 		}
 
 		function interestByRegion(searchTerm) {
-         var params = {
-         	keyword: searchTerm,
-         	category: 0,
-         	startTime: "2016-05-25",
-         };
+			var params = {
+				keyword: searchTerm,
+				category: 0,
+				startTime: "2016-05-25",
+			};
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $.post(AppConfig.apiUrl + '/interestByRegion', params);
+		}
+
+		function relatedTopics(searchTerm) {
+			var params = {
+				keyword: searchTerm,
+				category: 0,
+				startTime: "2016-05-25",
+			};
+			//	Realiza la llamada al servicio web enviando los parámetros
+			//	en formato JSON
+			return $.post(AppConfig.apiUrl + '/relatedTopics', params);
+		}
+
+		function relatedQueries(searchTerm) {
+			var params = {
+				keyword: searchTerm,
+				category: 0,
+				startTime: "past_7_days",
+			};
+			//	Realiza la llamada al servicio web enviando los parámetros
+			//	en formato JSON
+			return $.post(AppConfig.apiUrl + '/relatedQueries', params);
 		}
 
 		//	Setea los datos del usuario en localStorage para controlar la sesión,

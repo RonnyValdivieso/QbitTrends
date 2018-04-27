@@ -5077,6 +5077,4 @@ if (typeof NProgress != 'undefined') {
 		init_autosize();
 		init_autocomplete();
 				
-	});	
-	
-
+	});
