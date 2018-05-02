@@ -6,6 +6,7 @@ app.factory("TrendsService", ['$soap', '$rootScope', 'localStorageService', 'App
 		service.interestOverTime = interestOverTime;
 		service.relatedTopics = relatedTopics;
 		service.relatedQueries = relatedQueries;
+		service.getCountries = getCountries;
 		// service.setCredentials = setCredentials;
 		// service.getCredentials = getCredentials;
 		// service.isLoggedIn = isLoggedIn;
@@ -54,6 +55,10 @@ app.factory("TrendsService", ['$soap', '$rootScope', 'localStorageService', 'App
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $.post(AppConfig.apiUrl + '/relatedQueries', params);
+		}
+
+		function getCountries() {
+			return $.getJSON(AppConfig.apiUrl + '/getCountries');
 		}
 
 		//	Setea los datos del usuario en localStorage para controlar la sesión,

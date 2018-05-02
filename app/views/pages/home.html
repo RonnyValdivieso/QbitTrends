@@ -8,8 +8,14 @@
 				<div class="input-group">
 					<input type="text" id="search" class="form-control" placeholder="Add a search term" ng-model="searchTerm">
 					<span class="input-group-btn">
-						<button class="btn btn-primary" type="button" ng-click="search()">Go!</button>
+						<button class="btn btn-primary" type="button" ng-click="search()">Search</button>
 					</span>
+				</div>
+				<div class="input-group">
+					<select name="countries" id="countries" class="form-control" ng-options="item.name for item in countries track by item.id" ng-model="selectedCountry"></select>
+				</div>
+				<div class="input-group">
+					<select name="time" id="time" class="form-control" ng-options="option.label for option in options track by option.value" ng-model="selectedTime"></select>
 				</div>
 			</div>
 		</div>
