@@ -2,55 +2,66 @@ app.factory("TrendsService", ['$soap', '$rootScope', 'localStorageService', 'App
 	function($soap, $rootScope, localStorageService, AppConfig) {
 		var service = {};
 
+		service.autoComplete = autoComplete;
 		service.interestByRegion = interestByRegion;
 		service.interestOverTime = interestOverTime;
 		service.relatedTopics = relatedTopics;
 		service.relatedQueries = relatedQueries;
 		service.getCountries = getCountries;
+		service.getCategories = getCategories;
+		service.getProperties = getProperties;
 		// service.setCredentials = setCredentials;
 		// service.getCredentials = getCredentials;
 		// service.isLoggedIn = isLoggedIn;
 
 		return service;
 
-		function interestOverTime(searchTerm) {
+		function autoComplete(keyword) {
+			return $.getJSON(AppConfig.apiUrl + '/autoComplete/' + keyword);
+		}
+
+		function interestOverTime(options) {
 			var params = {
-				keyword: searchTerm,
-				category: 0,
-				startTime: "2016-05-25",
+				keyword: options.keyword,
+				category: options.category,
+				startTime: options.startTime, //"2016-05-25",
+				geo: options.geo
 			};
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $.post(AppConfig.apiUrl + '/interestOverTime', params);
 		}
 
-		function interestByRegion(searchTerm) {
+		function interestByRegion(options) {
 			var params = {
-				keyword: searchTerm,
-				category: 0,
-				startTime: "2016-05-25",
+				keyword: options.keyword,
+				category: options.category,
+				startTime: options.startTime, //"2016-05-25",
+				geo: options.geo
 			};
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $.post(AppConfig.apiUrl + '/interestByRegion', params);
 		}
 
-		function relatedTopics(searchTerm) {
+		function relatedTopics(options) {
 			var params = {
-				keyword: searchTerm,
-				category: 0,
-				startTime: "2016-05-25",
+				keyword: options.keyword,
+				category: options.category,
+				startTime: options.startTime, //"2016-05-25",
+				geo: options.geo
 			};
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $.post(AppConfig.apiUrl + '/relatedTopics', params);
 		}
 
-		function relatedQueries(searchTerm) {
+		function relatedQueries(options) {
 			var params = {
-				keyword: searchTerm,
-				category: 0,
-				startTime: "past_7_days",
+				keyword: options.keyword,
+				category: options.category,
+				startTime: options.startTime, //"2016-05-25",
+				geo: options.geo
 			};
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
@@ -59,6 +70,14 @@ app.factory("TrendsService", ['$soap', '$rootScope', 'localStorageService', 'App
 
 		function getCountries() {
 			return $.getJSON(AppConfig.apiUrl + '/getCountries');
+		}
+
+		function getCategories() {
+			return $.getJSON(AppConfig.apiUrl + '/getCategories');
+		}
+
+		function getProperties() {
+			return $.getJSON(AppConfig.apiUrl + '/getProperties');
 		}
 
 		//	Setea los datos del usuario en localStorage para controlar la sesión,

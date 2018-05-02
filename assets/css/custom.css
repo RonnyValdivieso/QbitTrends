@@ -4335,3 +4335,9 @@ a.user-profile span {
 .row-progress-bar {
 	width: 150px;
 }
+.chart-container {
+	height: 300px;
+}
+.search-group {
+	width: 100%;
+}

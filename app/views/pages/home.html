@@ -5,17 +5,33 @@
 	<div class="row">
 		<div class="col-md-12 col-xs-12">
 			<div class="x_panel">
-				<div class="input-group">
-					<input type="text" id="search" class="form-control" placeholder="Add a search term" ng-model="searchTerm">
-					<span class="input-group-btn">
-						<button class="btn btn-primary" type="button" ng-click="search()">Search</button>
-					</span>
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="input-group search-group">
+						<input type="text" id="search" class="form-control" placeholder="Add a search term" ng-model="searchTerm" ng-keydown="autoComplete($event)">
+						<span class="input-group-btn">
+							<button class="btn btn-primary" type="button" ng-click="search()">Search</button>
+						</span>
+					</div>
 				</div>
-				<div class="input-group">
-					<select name="countries" id="countries" class="form-control" ng-options="item.name for item in countries track by item.id" ng-model="selectedCountry"></select>
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="input-group search-group">
+						<select name="countries" id="countries" class="form-control" ng-options="item.name for item in countries track by item.id" ng-model="selectedCountry"></select>
+					</div>
 				</div>
-				<div class="input-group">
-					<select name="time" id="time" class="form-control" ng-options="option.label for option in options track by option.value" ng-model="selectedTime"></select>
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="input-group search-group">
+						<select name="time" id="time" class="form-control" ng-options="option.label for option in options track by option.value" ng-model="selectedTime"></select>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="input-group search-group">
+						<select name="categories" id="categories" class="form-control" ng-options="option.name for option in categories track by option.id" ng-model="selectedCategory"></select>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="input-group search-group">
+						<select name="properties" id="properties" class="form-control" ng-options="option.name for option in properties track by option.id" ng-model="selectedProperty"></select>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -33,8 +49,8 @@
 										<h2>Interest Over Time</h2>
 										<div class="clearfix"></div>
 									</div>
-									<div class="x_content">
-										<canvas id="lineChart" height="300"></canvas>
+									<div class="x_content chart-container">
+										<canvas id="lineChart"></canvas>
 									</div>
 								</div>
 							</div>

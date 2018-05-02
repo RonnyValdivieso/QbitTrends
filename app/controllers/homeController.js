@@ -10,27 +10,26 @@ app.controller('homeController', ['$scope', '$rootScope', '$location', 'localSto
 		$scope.relatedTopicsWidget = false;
 		$scope.relatedQueriesWidget = false;
 		$scope.loader = false;
-		// $scope.interestByRegion = interestByRegion;
-		// $scope.interestOverTime = interestOverTime;
-
 		$scope.values = [];
 		$scope.options = [
-			{label: "Past 5 years", value: "past_5_years"},
-			{label: "Past 12 months", value: "past_12_months"},
-			{label: "Past 90 days", value: "past_90_days"},
-			{label: "Past 30 days", value: "past_30_days"},
-			{label: "Past 7 days", value: "past_7_days"},
-			{label: "Past 1 day", value: "past_1_day"},
-			{label: "Past 4 hours", value: "past_4_hours"},
-			{label: "Past 1 hour", value: "past_1_hour"}
+			{ label: "Past 5 years", value: "past_5_years" },
+			{ label: "Past 12 months", value: "past_12_months" },
+			{ label: "Past 90 days", value: "past_90_days" },
+			{ label: "Past 30 days", value: "past_30_days" },
+			{ label: "Past 7 days", value: "past_7_days" },
+			{ label: "Past 1 day", value: "past_1_day" },
+			{ label: "Past 4 hours", value: "past_4_hours" },
+			{ label: "Past 1 hour", value: "past_1_hour "}
 		];
-		$scope.selectedTime = {label: "Past 12 months", value: "past_12_months"};
+		$scope.selectedTime = $scope.options[1];
 
 		function init() {
 			// search();
 			init_JQVmap();
 			init_daterangepicker();
 			init_countries();
+			init_categories();
+			init_properties();
 		}
 
 		function search() {
@@ -41,8 +40,22 @@ app.controller('homeController', ['$scope', '$rootScope', '$location', 'localSto
 			relatedQueries();
 		}
 
+		$scope.autoComplete = function(event) {
+			console.log("autoComplete");
+			TrendsService.autoComplete($scope.searchTerm)
+			.then(function(response) {
+				console.log(response);
+			})
+		}
+
 		function interestByRegion() {
-			TrendsService.interestByRegion($scope.searchTerm)
+			var options = {
+				keyword: $scope.searchTerm,
+				category: $scope.selectedCategory.id,
+				startTime: $scope.selectedTime.value,
+				geo: $scope.selectedCountry.value
+			}
+			TrendsService.interestByRegion(options)
 			.then(function(response) {
 				// console.log(response);
 				$scope.$apply(function () {
@@ -65,7 +78,13 @@ app.controller('homeController', ['$scope', '$rootScope', '$location', 'localSto
 		}
 
 		function interestOverTime() {
-			TrendsService.interestOverTime($scope.searchTerm)
+			var options = {
+				keyword: $scope.searchTerm,
+				category: $scope.selectedCategory.id,
+				startTime: $scope.selectedTime.value,
+				geo: $scope.selectedCountry.id
+			}
+			TrendsService.interestOverTime(options)
 			.then(function(response) {
 				// console.log(response);
 				$scope.$apply(function () {
@@ -121,7 +140,14 @@ app.controller('homeController', ['$scope', '$rootScope', '$location', 'localSto
 		}
 
 		function relatedTopics() {
-			TrendsService.relatedTopics($scope.searchTerm)
+			var options = {
+				keyword: $scope.searchTerm,
+				category: $scope.selectedCategory.id,
+				startTime: $scope.selectedTime.value,
+				geo: $scope.selectedCountry.id
+			}
+
+			TrendsService.relatedTopics(options)
 			.then(function(response) {
 				console.log(response);
 				$scope.$apply(function () {
@@ -133,14 +159,20 @@ app.controller('homeController', ['$scope', '$rootScope', '$location', 'localSto
 					
 				});
 
-			console.log($scope.data);
 		 }, function(err) {
 				//
 			});
 		}
 
 		function relatedQueries() {
-			TrendsService.relatedQueries($scope.searchTerm)
+			var options = {
+				keyword: $scope.searchTerm,
+				category: $scope.selectedCategory.id,
+				startTime: $scope.selectedTime.value,
+				geo: $scope.selectedCountry.id
+			}
+
+			TrendsService.relatedQueries(options)
 			.then(function(response) {
 				console.log(response);
 				$scope.$apply(function () {
@@ -169,7 +201,7 @@ app.controller('homeController', ['$scope', '$rootScope', '$location', 'localSto
 		function init_JQVmap() {
 			"undefined" != typeof jQuery.fn.vectorMap && (console.log("init_JQVmap"), $("#world-map-gdp").length && $("#world-map-gdp").vectorMap({
 				map: "world_en",
-			  backgroundColor: null,
+			  	backgroundColor: null,
 				color: "#ffffff",
 				hoverOpacity: .7,
 				selectedColor: "#666666",
@@ -187,71 +219,71 @@ app.controller('homeController', ['$scope', '$rootScope', '$location', 'localSto
 			console.log('init_daterangepicker');
 		
 			var cb = function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
-			  $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+				console.log(start.toISOString(), end.toISOString(), label);
+				$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 			};
 
 			var optionSet1 = {
-			  startDate: moment().subtract(29, 'days'),
-			  endDate: moment(),
-			  minDate: '01/01/2012',
-			  maxDate: '12/31/2015',
-			  dateLimit: {
-				days: 60
-			  },
-			  showDropdowns: true,
-			  showWeekNumbers: true,
-			  timePicker: false,
-			  timePickerIncrement: 1,
-			  timePicker12Hour: true,
-			  ranges: {
-				'Today': [moment(), moment()],
-				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-				'This Month': [moment().startOf('month'), moment().endOf('month')],
-				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-			  },
-			  opens: 'left',
-			  buttonClasses: ['btn btn-default'],
-			  applyClass: 'btn-small btn-primary',
-			  cancelClass: 'btn-small',
-			  format: 'MM/DD/YYYY',
-			  separator: ' to ',
-			  locale: {
-				applyLabel: 'Submit',
-				cancelLabel: 'Clear',
-				fromLabel: 'From',
-				toLabel: 'To',
-				customRangeLabel: 'Custom',
-				daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-				monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-				firstDay: 1
-			  }
+				startDate: moment().subtract(29, 'days'),
+				endDate: moment(),
+				minDate: '01/01/2012',
+				maxDate: '12/31/2015',
+				dateLimit: {
+					days: 60
+				},
+				showDropdowns: true,
+				showWeekNumbers: true,
+				timePicker: false,
+				timePickerIncrement: 1,
+				timePicker12Hour: true,
+				ranges: {
+					'Today': [moment(), moment()],
+					'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+					'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+					'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+					'This Month': [moment().startOf('month'), moment().endOf('month')],
+					'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				},
+				opens: 'left',
+				buttonClasses: ['btn btn-default'],
+				applyClass: 'btn-small btn-primary',
+				cancelClass: 'btn-small',
+				format: 'MM/DD/YYYY',
+				separator: ' to ',
+				locale: {
+					applyLabel: 'Submit',
+					cancelLabel: 'Clear',
+					fromLabel: 'From',
+					toLabel: 'To',
+					customRangeLabel: 'Custom',
+					daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+					monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+					firstDay: 1
+				}
 			};
 			
 			$('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
 			$('#reportrange').daterangepicker(optionSet1, cb);
 			$('#reportrange').on('show.daterangepicker', function() {
-			  console.log("show event fired");
+				console.log("show event fired");
 			});
 			$('#reportrange').on('hide.daterangepicker', function() {
-			  console.log("hide event fired");
+				console.log("hide event fired");
 			});
 			$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-			  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+				console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
 			});
 			$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-			  console.log("cancel event fired");
+				console.log("cancel event fired");
 			});
 			$('#options1').click(function() {
-			  $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+				$('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
 			});
 			$('#options2').click(function() {
-			  $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+				$('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
 			});
 			$('#destroy').click(function() {
-			  $('#reportrange').data('daterangepicker').remove();
+				$('#reportrange').data('daterangepicker').remove();
 			});
    
 		}
@@ -263,6 +295,24 @@ app.controller('homeController', ['$scope', '$rootScope', '$location', 'localSto
 				children.push({name:response.name, id:response.id});
 				$scope.countries = children;
 				$scope.selectedCountry = $scope.countries[$scope.countries.length - 1];
+			});
+		}
+
+		function init_categories() {
+			TrendsService.getCategories()
+			.then(function(response) {
+				var children = response.children;
+				children.push({name:response.name, id:response.id});
+				$scope.categories = children;
+				$scope.selectedCategory = $scope.categories[$scope.categories.length - 1];
+			});
+		}
+
+		function init_properties() {
+			TrendsService.getProperties()
+			.then(function(response) {
+				$scope.properties = response.children;
+				$scope.selectedProperty = $scope.properties[0];
 			});
 		}
 
